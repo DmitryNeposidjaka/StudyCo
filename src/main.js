@@ -1,0 +1,20 @@
+import Vue from 'vue'
+import App from './App.vue'
+import vuetify from './plugins/vuetify';
+import router from './router.js'
+import VueAxios from 'vue-axios'
+import axios from './axios'
+import alert from './plugins/alert'
+import store from './store/index'
+
+Vue.config.productionTip = false;
+
+Vue.use(VueAxios, axios);
+
+new Vue({
+  vuetify,
+  router,
+  alert,
+  store,
+  render: h => h(App)
+}).$mount('#app');
