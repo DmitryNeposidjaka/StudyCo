@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import courses from './courses'
 import articles from './articles'
+import user from './user'
 import VuexPersist from 'vuex-persist';
 
 Vue.use(Vuex);
@@ -15,7 +16,8 @@ const vuexLocalStorage = new VuexPersist({
     // filter: mutation => (true)
     reducer: state => ({
         courses: state.courses,
-        articles: state.articles
+        articles: state.articles,
+        user: state.user
         // getRidOfThisModule: state.getRidOfThisModule (No one likes it.)
     })
 });
@@ -23,7 +25,8 @@ const vuexLocalStorage = new VuexPersist({
 const store = new Vuex.Store({
     modules: {
         courses,
-        articles
+        articles,
+        user
     },
     plugins: [vuexLocalStorage.plugin]
 });

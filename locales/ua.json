@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "dashboard": "Головна",
+    "courses": "Мої курси",
+    "articles": "Статті",
+    "news": "Новини",
+    "propositions": "Пропозиції",
+    "products": "Продукти",
+    "settings": "Параметри",
+    "profile": "Профіль",
+    "avatar": "Аватар"
+  },
+  "common": {
+    "read": "Читати",
+    "previous": "Попередня"
+  }
+}

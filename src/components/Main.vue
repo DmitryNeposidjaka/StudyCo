@@ -9,7 +9,7 @@
           <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
         </v-list-item-avatar>
 
-        <v-list-item-title>John Leider</v-list-item-title>
+        <v-list-item-title>{{user.fullname}}</v-list-item-title>
 
         <v-btn
             icon
@@ -44,7 +44,7 @@
                :src="navWallpaper">
       <!-- -->
 
-      <v-toolbar-title><span style="color: floralwhite; font-weight: bold">{{$router.currentRoute.meta.title}}</span></v-toolbar-title>
+      <v-toolbar-title><span style="color: floralwhite; font-weight: bold">{{$t('nav.' + $router.currentRoute.meta.title)}}</span></v-toolbar-title>
       <div class="flex-grow-1"></div>
       <v-btn v-if="!drawer" icon
              @click.stop="drawer = !drawer">
@@ -80,29 +80,73 @@
     <v-footer app>
       <!-- -->
     </v-footer>
+    <div class="text-center">
+      <v-bottom-sheet>
+        <template v-slot:activator="{ on }">
+          <v-btn
+              v-on="on"
+          >
+            <v-icon>mdi-menu-up-outline</v-icon>
+          </v-btn>
+        </template>
+        <v-sheet class="text-center">
+          <v-row
+              height="100px"
+              justify="center"
+          >
+          <v-btn
+              class=" justify-center"
+              @click="$router.go(-1)"
+          >
+            {{$t('common.previous')}} <v-icon right dark>mdi-page-previous-outline</v-icon>
+          </v-btn>
+          </v-row>
+        </v-sheet>
+      </v-bottom-sheet>
+    </div>
   </v-app>
 </template>
 
 <script>
+    import {mapActions, mapGetters} from 'vuex'
+
     export default {
         data () {
             return {
                 drawer: true,
                 items: [
-                    { title: 'Dashboard', icon: 'mdi-home-city', href: this.$router.resolve({name: 'dashboard'}).href},
-                    { title: 'My courses', icon: 'mdi-school-outline', href: this.$router.resolve({name: 'courses'}).href},
-                    { title: 'Articles', icon: 'mdi-post-outline', href: this.$router.resolve({name: 'articles'}).href},
-                    { title: 'News', icon: 'mdi-newspaper-variant-outline', href: this.$router.resolve({name: 'news'}).href},
-                    { title: 'Propositions', icon: 'mdi-ticket-percent', href: this.$router.resolve({name: 'propositions'}).href},
-                    { title: 'Products', icon: 'mdi-cart-outline', href: this.$router.resolve({name: 'products'}).href},
-                    { title: 'Settings', icon: 'mdi-settings-outline', href: this.$router.resolve({name: 'settings'}).href},
+                    { title: this.$t('nav.dashboard'), icon: 'mdi-home-city', href: this.$router.resolve({name: 'dashboard'}).href},
+                    { title: this.$t('nav.courses'), icon: 'mdi-school-outline', href: this.$router.resolve({name: 'courses'}).href},
+                    { title: this.$t('nav.articles'), icon: 'mdi-post-outline', href: this.$router.resolve({name: 'articles'}).href},
+                    { title: this.$t('nav.news'), icon: 'mdi-newspaper-variant-outline', href: this.$router.resolve({name: 'news'}).href},
+                    { title: this.$t('nav.propositions'), icon: 'mdi-ticket-percent', href: this.$router.resolve({name: 'propositions'}).href},
+                    { title: this.$t('nav.products'), icon: 'mdi-cart-outline', href: this.$router.resolve({name: 'products'}).href},
+                    { title: this.$t('nav.settings'), icon: 'mdi-settings-outline', href: this.$router.resolve({name: 'settings'}).href},
                 ],
                 navWallpaper: '',
                 mini: true,
             }
         },
+        computed: {
+            ...mapGetters('user', {
+                user: 'get'
+            }),
+        },
+        methods: {
+            ...mapActions('user',{
+                setUser: 'set'
+            }),
+            loadUser() {
+                let vm = this;
+                this.axios
+                    .get('user/me')
+                    .then(function (response) {
+                        vm.setUser(response.data)
+                    })
+            }
+        },
         mounted() {
-        //    console.log(this.$router)
+            this.loadUser()
         },
         created() {
             this.navWallpaper = '/images/wallpapers/wall-' + Math.floor(Math.random() * 14) + '.jpg'

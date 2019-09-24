@@ -1,14 +1,5 @@
 <template>
-  <div>
-    <v-btn
-        text
-        color="orange"
-        @click="$router.push({name: 'avatar'})"
-    >
-      Avatar
-    </v-btn>
-    <router-view></router-view>
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>

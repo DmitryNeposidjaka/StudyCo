@@ -34,7 +34,7 @@
             color="orange"
             @click="$router.push({name: 'coursesDetail',  params: { id: course.id }})"
         >
-          Read
+          {{$t('common.read')}}
         </v-btn>
       </v-card-actions>
     </v-card>

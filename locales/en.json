@@ -1,0 +1,17 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "courses": "My courses",
+    "articles": "Articles",
+    "news": "News",
+    "propositions": "Propositions",
+    "products": "Products",
+    "settings": "Settings",
+    "profile": "Profile",
+    "avatar": "Avatar"
+  },
+  "common": {
+    "read": "Read",
+    "previous": "Previous"
+  }
+}

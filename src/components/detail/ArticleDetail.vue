@@ -45,9 +45,6 @@
             article() {
                 return this.getArticleById(this.$router.currentRoute.params.id)
             }
-        },
-        mounted() {
-            console.log(this.article)
         }
     }
 </script>

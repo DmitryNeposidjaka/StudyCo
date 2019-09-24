@@ -6,15 +6,26 @@ import VueAxios from 'vue-axios'
 import axios from './axios'
 import alert from './plugins/alert'
 import store from './store/index'
+import VueI18n from 'vue-i18n'
 
 Vue.config.productionTip = false;
 
 Vue.use(VueAxios, axios);
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+    locale: 'ua',
+    messages: {
+        ua: require('../locales/ua'),
+        en: require('../locales/en'),
+    }
+});
 
 new Vue({
-  vuetify,
-  router,
-  alert,
-  store,
-  render: h => h(App)
+    vuetify,
+    i18n,
+    router,
+    alert,
+    store,
+    render: h => h(App)
 }).$mount('#app');

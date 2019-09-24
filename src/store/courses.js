@@ -24,7 +24,7 @@ let courses = {
             }
 
             let lState = JSON.parse(localStorage.getItem('vuex'));
-            if (lState.courses.data) {
+            if (lState && lState.courses.data) {
                 result = lState.courses.data.filter(function(item) {
                     return item.id === parseInt(id)
                 });
@@ -40,7 +40,7 @@ let courses = {
         all: state => {
             if (!state.data.length) {
                 let lState = JSON.parse(localStorage.getItem('vuex'));
-                if (lState.courses.data) {
+                if (lState && lState.courses.data) {
                     state.data = lState.courses.data
                 }
             }

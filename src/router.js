@@ -12,6 +12,7 @@ import ArticleDetail from './components/detail/ArticleDetail.vue'
 import Propositions from './components/Propositions.vue'
 import Settings from './components/settings/Settings.vue'
 import Avatar from './components/settings/Avatar.vue'
+import Profile from './components/settings/Profile.vue'
 
 
 Vue.use(Router);
@@ -34,7 +35,7 @@ export default new Router({
                     component: Dashboard,
                     name: 'dashboard',
                     meta: {
-                        title: 'Dashboard'
+                        title: 'dashboard'
                     }
                 },
                 {
@@ -42,7 +43,7 @@ export default new Router({
                     component: Products,
                     name: 'products',
                     meta: {
-                        title: 'Products'
+                        title: 'products'
                     }
                 },
                 {
@@ -50,7 +51,7 @@ export default new Router({
                     component: Articles,
                     name: 'articles',
                     meta: {
-                        title: 'Articles'
+                        title: 'articles'
                     }
                 },
                 {
@@ -58,7 +59,7 @@ export default new Router({
                     component: ArticleDetail,
                     name: 'articleDetail',
                     meta: {
-                        title: 'Article detail'
+                        title: 'article_detail'
                     },
                 },
                 {
@@ -66,7 +67,7 @@ export default new Router({
                     component: News,
                     name: 'news',
                     meta: {
-                        title: 'News'
+                        title: 'news'
                     }
                 },
                 {
@@ -74,7 +75,7 @@ export default new Router({
                     component: Courses,
                     name: 'courses',
                     meta: {
-                        title: 'Courses'
+                        title: 'courses'
                     },
                 },
                 {
@@ -82,7 +83,7 @@ export default new Router({
                     component: CourseDetail,
                     name: 'coursesDetail',
                     meta: {
-                        title: 'Course detail'
+                        title: 'course_detail'
                     },
                 },
                 {
@@ -90,7 +91,7 @@ export default new Router({
                     component: Propositions,
                     name: 'propositions',
                     meta: {
-                        title: 'Propositions'
+                        title: 'propositions'
                     }
                 },
                 {
@@ -98,15 +99,24 @@ export default new Router({
                     component: Settings,
                     name: 'settings',
                     meta: {
-                        title: 'Settings'
+                        title: 'settings'
                     },
+                    redirect: '/settings/profile',
                     children: [
+                        {
+                            path: 'profile',
+                            component: Profile,
+                            name: 'profile',
+                            meta: {
+                                title: 'profile'
+                            }
+                        },
                         {
                             path: 'avatar',
                             component: Avatar,
                             name: 'avatar',
                             meta: {
-                                title: 'Avatar'
+                                title: 'avatar'
                             }
                         },
                     ]
