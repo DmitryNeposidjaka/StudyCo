@@ -1,7 +1,7 @@
 {
   "name": "StudyCo",
   "short_name" : "SC",
-  "theme_color": "#558a87",
+  "theme_color": "#90A4AE",
   "background_color": "#ffffff",
   "display": "standalone",
   "start_url": "/index.html",

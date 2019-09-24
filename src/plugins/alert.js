@@ -39,7 +39,7 @@ let alert = {
                     let alert = this;
                     setTimeout(function () {
                         alert.stack.pop()
-                    }, 2000)
+                    }, 5000)
                 }
             }
         })

@@ -3,22 +3,23 @@
     <v-row align="center"
            justify="center">
     <v-progress-circular
-        v-if="loading"
+        v-if="loading && !courses.length"
         :size="100"
         color="teal lighten-2"
         indeterminate
     ></v-progress-circular>
     </v-row>
+    <div v-if="!loading || courses.length">
     <v-card
         style="margin: 20px 0px"
-        v-for="course in courses"
+        v-for="(course, i) in courses"
         class="mx-auto"
         max-width="400"
     >
       <v-img
           class="white--text"
           height="200px"
-          src="https://picsum.photos/400/300?random"
+          :src="'https://picsum.photos/400/300?random=' + i"
       >
       </v-img>
 
@@ -31,11 +32,13 @@
         <v-btn
             text
             color="orange"
+            @click="$router.push({name: 'coursesDetail',  params: { id: course.id }})"
         >
           Read
         </v-btn>
       </v-card-actions>
     </v-card>
+    </div>
   </div>
 </template>
 
@@ -55,9 +58,9 @@
             })
         },
         methods: {
-            ...mapActions('courses', [
-              'setAll'
-            ]),
+            ...mapActions('courses', {
+                loadCourses: 'setAll'
+            }),
             getData() {
                 const vm = this;
                 this.loading = true;
@@ -71,7 +74,7 @@
                     }*/
                 }).then(function (response) {
                     if (response.status == 200) {
-                        vm.setAll(response.data);
+                        vm.loadCourses(response.data);
                         /*vm.pagination.total = response.data.total;
                         vm.pagination.per_page = parseInt(response.data.per_page);
                         vm.pagination.current_page = response.data.current_page;
@@ -84,9 +87,7 @@
         },
 
         mounted() {
-            console.log(this)
-            this.setAll([1,2,3]);
-            this.getData()
+            this.getData();
         }
     }
 </script>

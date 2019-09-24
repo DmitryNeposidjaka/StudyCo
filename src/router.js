@@ -8,7 +8,10 @@ import Articles from './components/Articles.vue'
 import News from './components/News.vue'
 import Courses from './components/Courses.vue'
 import CourseDetail from './components/detail/CourseDetail.vue'
+import ArticleDetail from './components/detail/ArticleDetail.vue'
 import Propositions from './components/Propositions.vue'
+import Settings from './components/settings/Settings.vue'
+import Avatar from './components/settings/Avatar.vue'
 
 
 Vue.use(Router);
@@ -27,7 +30,7 @@ export default new Router({
             name: 'main',
             children: [
                 {
-                    path: 'dashbord',
+                    path: '/dashbord',
                     component: Dashboard,
                     name: 'dashboard',
                     meta: {
@@ -35,7 +38,7 @@ export default new Router({
                     }
                 },
                 {
-                    path: 'products',
+                    path: '/products',
                     component: Products,
                     name: 'products',
                     meta: {
@@ -43,7 +46,7 @@ export default new Router({
                     }
                 },
                 {
-                    path: 'articles',
+                    path: '/articles',
                     component: Articles,
                     name: 'articles',
                     meta: {
@@ -51,7 +54,15 @@ export default new Router({
                     }
                 },
                 {
-                    path: 'news',
+                    path: '/articles/detail/:id',
+                    component: ArticleDetail,
+                    name: 'articleDetail',
+                    meta: {
+                        title: 'Article detail'
+                    },
+                },
+                {
+                    path: '/news',
                     component: News,
                     name: 'news',
                     meta: {
@@ -59,7 +70,7 @@ export default new Router({
                     }
                 },
                 {
-                    path: 'courses',
+                    path: '/courses',
                     component: Courses,
                     name: 'courses',
                     meta: {
@@ -67,20 +78,38 @@ export default new Router({
                     },
                 },
                 {
-                    path: 'courses/detail/2',
+                    path: '/courses/detail/:id',
                     component: CourseDetail,
                     name: 'coursesDetail',
                     meta: {
-                        title: 'sssssssss'
+                        title: 'Course detail'
                     },
                 },
                 {
-                    path: 'propositions',
+                    path: '/propositions',
                     component: Propositions,
                     name: 'propositions',
                     meta: {
                         title: 'Propositions'
                     }
+                },
+                {
+                    path: '/settings',
+                    component: Settings,
+                    name: 'settings',
+                    meta: {
+                        title: 'Settings'
+                    },
+                    children: [
+                        {
+                            path: 'avatar',
+                            component: Avatar,
+                            name: 'avatar',
+                            meta: {
+                                title: 'Avatar'
+                            }
+                        },
+                    ]
                 },
             ]
         },

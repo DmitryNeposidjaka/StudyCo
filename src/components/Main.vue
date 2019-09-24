@@ -41,7 +41,7 @@
     </v-navigation-drawer>
 
     <v-app-bar app
-               src="https://picsum.photos/1920/1080?random">
+               :src="navWallpaper">
       <!-- -->
 
       <v-toolbar-title><span style="color: floralwhite; font-weight: bold">{{$router.currentRoute.meta.title}}</span></v-toolbar-title>
@@ -89,18 +89,23 @@
             return {
                 drawer: true,
                 items: [
-                    { title: 'Dashboard', icon: 'mdi-home-city', href: this.$router.resolve('dashbord').href},
-                    { title: 'My courses', icon: 'mdi-school-outline', href: this.$router.resolve('courses').href},
-                    { title: 'Articles', icon: 'mdi-post-outline', href: this.$router.resolve('articles').href},
-                    { title: 'News', icon: 'mdi-newspaper-variant-outline', href: this.$router.resolve('news').href},
-                    { title: 'Propositions', icon: 'mdi-ticket-percent', href: this.$router.resolve('propositions').href},
-                    { title: 'Products', icon: 'mdi-cart-outline', href: this.$router.resolve('products').href},
+                    { title: 'Dashboard', icon: 'mdi-home-city', href: this.$router.resolve({name: 'dashboard'}).href},
+                    { title: 'My courses', icon: 'mdi-school-outline', href: this.$router.resolve({name: 'courses'}).href},
+                    { title: 'Articles', icon: 'mdi-post-outline', href: this.$router.resolve({name: 'articles'}).href},
+                    { title: 'News', icon: 'mdi-newspaper-variant-outline', href: this.$router.resolve({name: 'news'}).href},
+                    { title: 'Propositions', icon: 'mdi-ticket-percent', href: this.$router.resolve({name: 'propositions'}).href},
+                    { title: 'Products', icon: 'mdi-cart-outline', href: this.$router.resolve({name: 'products'}).href},
+                    { title: 'Settings', icon: 'mdi-settings-outline', href: this.$router.resolve({name: 'settings'}).href},
                 ],
+                navWallpaper: '',
                 mini: true,
             }
         },
         mounted() {
         //    console.log(this.$router)
+        },
+        created() {
+            this.navWallpaper = '/images/wallpapers/wall-' + Math.floor(Math.random() * 14) + '.jpg'
         }
     }
 </script>

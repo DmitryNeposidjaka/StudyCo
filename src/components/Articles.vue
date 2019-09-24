@@ -23,6 +23,7 @@
         <v-btn
             text
             color="orange"
+            @click="$router.push({name: 'articleDetail',  params: { id: article.id }})"
         >
           Read
         </v-btn>
@@ -32,15 +33,23 @@
 </template>
 
 <script>
+    import {mapActions, mapGetters} from 'vuex'
+
     export default {
         data() {
             return {
-                articles: [],
                 loading: false,
             }
         },
-
+        computed: {
+            ...mapGetters('articles', {
+                articles: 'all'
+            })
+        },
         methods: {
+            ...mapActions('articles', {
+                loadArticles: 'setAll'
+            }),
             getData() {
                 const vm = this;
                 this.loading = true;
@@ -54,7 +63,7 @@
                     }*/
                 }).then(function (response) {
                     if (response.status == 200) {
-                        vm.articles = response.data;
+                        vm.loadArticles(response.data);
                         /*vm.pagination.total = response.data.total;
                         vm.pagination.per_page = parseInt(response.data.per_page);
                         vm.pagination.current_page = response.data.current_page;
