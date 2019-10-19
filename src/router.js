@@ -8,7 +8,9 @@ import Articles from './components/Articles.vue'
 import News from './components/News.vue'
 import Courses from './components/Courses.vue'
 import CourseDetail from './components/detail/CourseDetail.vue'
+import NewsDetail from './components/detail/NewsDetail.vue'
 import ArticleDetail from './components/detail/ArticleDetail.vue'
+import PropositionDetail from './components/detail/PropositionDetail.vue'
 import Propositions from './components/Propositions.vue'
 import Settings from './components/settings/Settings.vue'
 import Avatar from './components/settings/Avatar.vue'
@@ -60,6 +62,22 @@ export default new Router({
                     name: 'articleDetail',
                     meta: {
                         title: 'article_detail'
+                    },
+                },
+                {
+                    path: '/news/detail/:id',
+                    component: NewsDetail,
+                    name: 'newsDetail',
+                    meta: {
+                        title: 'news_detail'
+                    },
+                },
+                {
+                    path: '/proposition/detail/:id',
+                    component: PropositionDetail,
+                    name: 'propositionDetail',
+                    meta: {
+                        title: 'proposition_detail'
                     },
                 },
                 {

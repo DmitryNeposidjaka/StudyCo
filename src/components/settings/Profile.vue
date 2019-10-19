@@ -5,7 +5,7 @@
   >
     <v-row align="center"
            justify="center"
-           style="padding: 50px 0px 20px">
+           >
 
       <v-avatar
 
@@ -36,6 +36,9 @@
       <p class="text-left">Telephone: <span class="font-weight-bold">{{user.telephone}}</span></p>
       <p class="text-left">Email: <span class="font-weight-bold">{{user.email}}</span></p>
     </v-card-text>
+    <v-card-actions>
+      <v-btn :raised="true" small color="grey lighten-2" @click="logout"><v-icon>mdi-location-exit</v-icon>{{$t('profile.logout')}}</v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -50,6 +53,16 @@
             ...mapGetters('user', {
                 user: 'get'
             })
+        },
+        methods: {
+            logout() {
+                this.axios.get('/logout')
+                    .then(function(response) {
+                        if(response.status == 200) {
+                            this.$router.push({name: 'login'})
+                        }
+                    })
+            }
         }
     }
 </script>

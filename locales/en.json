@@ -2,6 +2,11 @@
   "nav": {
     "dashboard": "Dashboard",
     "courses": "My courses",
+    "course_detail": "Course",
+    "article_detail": "Article",
+    "news_detail": "News",
+    "proposition_detail": "Proposition",
+    "course_to_file": "To files",
     "articles": "Articles",
     "news": "News",
     "propositions": "Propositions",
@@ -12,6 +17,13 @@
   },
   "common": {
     "read": "Read",
+    "explore": "Explore",
     "previous": "Previous"
+  },
+  "dashboard": {
+    "schedule": "Today shcedule"
+  },
+  "profile": {
+    "logout": "Logout"
   }
 }

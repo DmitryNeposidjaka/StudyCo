@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import courses from './courses'
 import articles from './articles'
+import propositions from './propositions'
+import news from './news'
 import user from './user'
 import VuexPersist from 'vuex-persist';
 
@@ -26,6 +28,8 @@ const store = new Vuex.Store({
     modules: {
         courses,
         articles,
+        propositions,
+        news,
         user
     },
     plugins: [vuexLocalStorage.plugin]

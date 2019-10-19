@@ -14,11 +14,14 @@
       {{course.displayname}}
     </v-card-title>
 
+    <div class="text-center"><v-btn small @click="$vuetify.goTo('#course-files')"><v-icon>mdi-file-document</v-icon>{{$t('nav.course_to_file')}}</v-btn></div>
+
     <v-card-text v-html="course.summary">
       {{course.summary}}
     </v-card-text>
     <v-expansion-panels>
       <v-expansion-panel
+          id="course-files"
           v-for="file in course.files"
           :key="file.id"
       >
@@ -59,6 +62,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import goTo from 'vuetify/es5/services/goto'
 
     export default {
 

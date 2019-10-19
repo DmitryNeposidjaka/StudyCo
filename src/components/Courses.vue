@@ -19,7 +19,7 @@
       <v-img
           class="white--text"
           height="200px"
-          :src="'https://picsum.photos/400/300?random=' + i"
+          :src="course.thumbnail"
       >
       </v-img>
 
@@ -34,7 +34,7 @@
             color="orange"
             @click="$router.push({name: 'coursesDetail',  params: { id: course.id }})"
         >
-          {{$t('common.read')}}
+          {{$t('common.explore')}}
         </v-btn>
       </v-card-actions>
     </v-card>

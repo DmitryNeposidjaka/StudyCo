@@ -12,6 +12,7 @@ Vue.config.productionTip = false;
 
 Vue.use(VueAxios, axios);
 Vue.use(VueI18n);
+Vue.use(require('vue-moment'));
 
 const i18n = new VueI18n({
     locale: 'ua',

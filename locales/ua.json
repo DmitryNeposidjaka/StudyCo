@@ -2,6 +2,11 @@
   "nav": {
     "dashboard": "Головна",
     "courses": "Мої курси",
+    "course_detail": "Курс",
+    "article_detail": "Стаття",
+    "news_detail": "Новина",
+    "proposition_detail": "Пропозиція",
+    "course_to_file": "До файлів",
     "articles": "Статті",
     "news": "Новини",
     "propositions": "Пропозиції",
@@ -12,6 +17,13 @@
   },
   "common": {
     "read": "Читати",
+    "explore": "Досліджувати",
     "previous": "Попередня"
+  },
+  "dashboard": {
+    "schedule": "Розклад на "
+  },
+  "profile": {
+    "logout": "Вийти"
   }
 }

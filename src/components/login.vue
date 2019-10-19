@@ -46,8 +46,8 @@
             return {
                 loading: false,
                 form: {
-                    username: 'admin@yopmail.com',
-                    password: '123456',
+                    username: '',
+                    password: '',
                 },
                 error: false,
                 rules: {

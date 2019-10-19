@@ -2,29 +2,30 @@
   <div>
     <v-card
         style="margin: 20px 0px"
-        v-for="article in data"
+        v-for="news in data"
         class="mx-auto"
         max-width="400"
     >
       <v-img
           class="white--text"
           height="200px"
-          :src="article.thumbnail"
+          :src="news.thumbnail"
       >
-        <v-card-title class="align-end fill-height">{{ article.title }}</v-card-title>
+        <v-card-title class="align-end fill-height">{{ news.title }}</v-card-title>
       </v-img>
 
       <v-card-text>
-        <span>{{article.updated_at}}</span><br>
-        <div class="text--primary">{{ article.description }}</div>
+        <span>{{news.updated_at}}</span><br>
+        <div class="text--primary">{{ news.description }}</div>
       </v-card-text>
 
       <v-card-actions>
         <v-btn
             text
             color="orange"
+            @click="$router.push({name: 'newsDetail',  params: { id: news.id }})"
         >
-          Read
+          {{$t('common.read')}}
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -32,15 +33,23 @@
 </template>
 
 <script>
+    import {mapActions, mapGetters} from 'vuex'
+
     export default {
         data() {
             return {
-                data: [],
                 loading: false,
             }
         },
-
+        computed: {
+            ...mapGetters('news', {
+                data: 'all'
+            })
+        },
         methods: {
+            ...mapActions('news', {
+                loadNews: 'setAll'
+            }),
             getData() {
                 const vm = this;
                 this.loading = true;
@@ -54,7 +63,7 @@
                     }*/
                 }).then(function (response) {
                     if (response.status == 200) {
-                        vm.data = response.data;
+                        vm.loadNews(response.data);
                         /*vm.pagination.total = response.data.total;
                         vm.pagination.per_page = parseInt(response.data.per_page);
                         vm.pagination.current_page = response.data.current_page;
