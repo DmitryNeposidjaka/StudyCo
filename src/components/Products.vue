@@ -33,7 +33,6 @@
     export default {
         data() {
             return {
-                data: [],
                 loading: false,
             }
         },
@@ -54,7 +53,7 @@
                     url: 'user/like/product/' + id,
                 }).then(function (response) {
                     if (response.status == 200) {
-                        vm.data.forEach(function(item, i, array) {
+                        vm.products.forEach(function(item, i, array) {
                             if (item.id == id) {
                                 item.is_user_liked = response.data.result
                             }
