@@ -6,6 +6,7 @@
     "article_detail": "Article",
     "news_detail": "News",
     "proposition_detail": "Proposition",
+    "product_detail": "Product",
     "course_to_file": "To files",
     "articles": "Articles",
     "news": "News",
@@ -18,10 +19,12 @@
   "common": {
     "read": "Read",
     "explore": "Explore",
-    "previous": "Previous"
+    "previous": "Previous",
+    "interesting": "Interesting"
   },
   "dashboard": {
-    "schedule": "Today shcedule"
+    "schedule": "Today shcedule",
+    "percentage": "Percentage"
   },
   "profile": {
     "logout": "Logout"

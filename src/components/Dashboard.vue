@@ -159,7 +159,7 @@
                                 },
                                 scaleLabel: {
                                     display: true,
-                                    labelString: "Percentage"
+                                    labelString: this.$t('dashboard.percentage')
                                 }
                             }]
                         }

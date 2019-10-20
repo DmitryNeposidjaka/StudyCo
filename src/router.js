@@ -11,6 +11,7 @@ import CourseDetail from './components/detail/CourseDetail.vue'
 import NewsDetail from './components/detail/NewsDetail.vue'
 import ArticleDetail from './components/detail/ArticleDetail.vue'
 import PropositionDetail from './components/detail/PropositionDetail.vue'
+import ProductDetail from './components/detail/ProductDetail.vue'
 import Propositions from './components/Propositions.vue'
 import Settings from './components/settings/Settings.vue'
 import Avatar from './components/settings/Avatar.vue'
@@ -78,6 +79,14 @@ export default new Router({
                     name: 'propositionDetail',
                     meta: {
                         title: 'proposition_detail'
+                    },
+                },
+                {
+                    path: '/product/detail/:id',
+                    component: ProductDetail,
+                    name: 'productDetail',
+                    meta: {
+                        title: 'product_detail'
                     },
                 },
                 {

@@ -6,6 +6,7 @@
     "article_detail": "Стаття",
     "news_detail": "Новина",
     "proposition_detail": "Пропозиція",
+    "product_detail": "Продукт",
     "course_to_file": "До файлів",
     "articles": "Статті",
     "news": "Новини",
@@ -18,10 +19,12 @@
   "common": {
     "read": "Читати",
     "explore": "Досліджувати",
-    "previous": "Попередня"
+    "previous": "Попередня",
+    "interesting": "Цікавитись"
   },
   "dashboard": {
-    "schedule": "Розклад на "
+    "schedule": "Розклад на ",
+    "percentage": "Відсотки"
   },
   "profile": {
     "logout": "Вийти"
