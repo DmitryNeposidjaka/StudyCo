@@ -2,17 +2,25 @@
   <div>
     <v-card
         style="margin: 20px 0px"
-        v-for="article in articles"
+        v-for="(article, key) in articles"
         class="mx-auto"
         max-width="400"
     >
       <v-img
+          v-if="!errorImages[key]"
           class="white--text"
           height="200px"
           :src="article.thumbnail"
+          @error="error(key)"
       >
         <v-card-title class="align-end fill-height">{{ article.title }}</v-card-title>
       </v-img>
+      <v-skeleton-loader
+          v-if="errorImages[key]"
+          class="mx-auto"
+          max-width="300"
+          type="image"
+      ></v-skeleton-loader>
 
       <v-card-text>
         <span>{{article.updated_at}}</span><br>
@@ -38,6 +46,7 @@
     export default {
         data() {
             return {
+                errorImages: [],
                 loading: false,
             }
         },
@@ -50,6 +59,10 @@
             ...mapActions('articles', {
                 loadArticles: 'setAll'
             }),
+            error(object) {
+                this.errorImages[object] = true
+            },
+
             getData() {
                 const vm = this;
                 this.loading = true;

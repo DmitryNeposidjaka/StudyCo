@@ -20,6 +20,11 @@
     "read": "Читати",
     "explore": "Досліджувати",
     "previous": "Попередня",
+    "language": "Мова",
+    "languages": {
+      "english": "English",
+      "ukrainian": "Українська"
+    },
     "interesting": "Цікавитись"
   },
   "dashboard": {

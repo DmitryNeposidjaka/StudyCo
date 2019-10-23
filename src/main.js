@@ -18,7 +18,7 @@ const i18n = new VueI18n({
     locale: 'ua',
     messages: {
         ua: require('../locales/ua'),
-        en: require('../locales/en'),
+        en: require('../locales/en.json'),
     }
 });
 

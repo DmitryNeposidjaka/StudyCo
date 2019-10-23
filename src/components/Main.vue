@@ -143,10 +143,13 @@
                     .then(function (response) {
                         vm.setUser(response.data)
                     })
+                    .then(function() {
+                        vm.$i18n.locale = vm.user.lang
+                    })
             }
         },
         mounted() {
-            this.loadUser()
+            this.loadUser();
         },
         created() {
             this.navWallpaper = '/images/wallpapers/wall-' + Math.floor(Math.random() * 14) + '.jpg'

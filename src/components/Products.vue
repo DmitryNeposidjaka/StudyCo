@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="flex-column" v-for="product in products">
+    <v-card class="flex-column" v-for="product in products" style="margin: 20px 0px">
       <v-container>
         <v-row justify="start">
           <v-col cols="auto">

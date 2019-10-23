@@ -20,6 +20,11 @@
     "read": "Read",
     "explore": "Explore",
     "previous": "Previous",
+    "language": "Language",
+    "languages": {
+      "english": "English",
+      "ukrainian": "Українська"
+    },
     "interesting": "Interesting"
   },
   "dashboard": {

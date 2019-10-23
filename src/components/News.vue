@@ -6,13 +6,7 @@
         class="mx-auto"
         max-width="400"
     >
-      <v-img
-          class="white--text"
-          height="200px"
-          :src="news.thumbnail"
-      >
-        <v-card-title class="align-end fill-height">{{ news.title }}</v-card-title>
-      </v-img>
+      <v-card-title class="align-end fill-height"><span class="blue-grey--text text--darken-2">{{ news.title }}</span></v-card-title>
 
       <v-card-text>
         <span>{{news.updated_at}}</span><br>

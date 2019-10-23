@@ -35,6 +35,7 @@
     <v-card-text>
       <p class="text-left">Telephone: <span class="font-weight-bold">{{user.telephone}}</span></p>
       <p class="text-left">Email: <span class="font-weight-bold">{{user.email}}</span></p>
+      <v-select :items="languages" :label="$t('common.language')" :value="user.lang" @change="changeLang" ></v-select>
     </v-card-text>
     <v-card-actions>
       <v-btn :raised="true" small color="grey lighten-2" @click="logout"><v-icon>mdi-location-exit</v-icon>{{$t('profile.logout')}}</v-btn>
@@ -43,18 +44,43 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapActions} from 'vuex'
 
     export default {
         data() {
-            return {}
+            return {
+                languages: [
+                    {
+                        text: this.$t('common.languages.ukrainian'),
+                        value: 'ua'
+                    },
+                    {
+                        text: this.$t('common.languages.english'),
+                        value: 'en'
+                    }
+                ]
+            }
         },
         computed: {
             ...mapGetters('user', {
                 user: 'get'
-            })
+            }),
         },
         methods: {
+
+            ...mapActions('user', {
+                setProperty: 'setProperty'
+            }),
+
+            changeLang(data) {
+                let vm = this;
+                this.setProperty({
+                    key: 'lang',
+                    value: data
+                }).then(function () {
+                    vm.$i18n.locale = data
+                })
+            },
             logout() {
                 this.axios.get('/logout')
                     .then(function(response) {

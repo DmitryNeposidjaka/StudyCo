@@ -1,16 +1,34 @@
+import Axios from '../axios.js'
+
 let user = {
     namespaced: true,
     state: {
         data: {}
     },
     mutations: {
-        set(state, data){
+        set(state, data) {
             state.data = data;
         },
+        setProperty(state, data) {
+            state.data[data.key] = data.value;
+        }
     },
     actions: {
-        set(context, data){
+        set(context, data) {
             context.commit('set', data);
+        },
+        setProperty(context, data) {
+            let props = {};
+            props[data.key] = data.value;
+            Axios({
+                method: 'patch',
+                url: 'user/me',
+                data: props
+            }).then(function (response) {
+                if (response.status == 201) {
+                    context.commit('setProperty', data);
+                }
+            });
         }
     },
     getters: {

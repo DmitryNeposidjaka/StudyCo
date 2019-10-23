@@ -6,15 +6,8 @@
   >
 
     <v-card-title>
-      {{news.title}}
+      <span class="blue-grey--text text--darken-2">{{news.title}}</span>
     </v-card-title>
-
-    <v-img
-        class="white--text"
-        height="300px"
-        :src="news.thumbnail"
-    >
-    </v-img>
 
     <v-card-text v-html="news.content">
       {{news.content}}

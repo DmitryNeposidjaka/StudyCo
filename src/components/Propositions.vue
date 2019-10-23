@@ -2,18 +2,26 @@
   <div>
     <v-card
         style="margin: 20px 0px"
-        v-for="proposition in propositions"
+        v-for="(proposition, key) in propositions"
         class="mx-auto"
         max-width="400"
     >
       <v-img
+          v-if="!errorImages[key]"
           class="white--text"
           height="200px"
           :src="proposition.thumbnail"
+          :eager="true"
+          @error="error(key)"
       >
         <v-card-title class="align-end fill-height">{{ proposition.title }}</v-card-title>
       </v-img>
-
+      <v-skeleton-loader
+          v-if="errorImages[key]"
+          class="mx-auto"
+          max-width="300"
+          type="image"
+      ></v-skeleton-loader>
       <v-card-text>
         <span>{{proposition.updated_at}}</span><br>
         <div class="text--primary">{{ proposition.description }}</div>
@@ -38,6 +46,7 @@
     export default {
         data() {
             return {
+                errorImages: [],
                 loading: false,
             }
         },
@@ -50,6 +59,11 @@
             ...mapActions('propositions', {
                 loadPropositions: 'setAll'
             }),
+
+            error(object) {
+                this.errorImages[object] = true
+            },
+
             getData() {
                 const vm = this;
                 this.loading = true;
