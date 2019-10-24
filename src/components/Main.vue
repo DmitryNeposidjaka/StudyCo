@@ -6,7 +6,7 @@
                          right>
       <v-list-item>
         <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+          <v-img :src="user.thumbnail_img"></v-img>
         </v-list-item-avatar>
 
         <v-list-item-title>{{user.fullname}}</v-list-item-title>

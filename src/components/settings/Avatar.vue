@@ -8,6 +8,7 @@
         justify="center"
     >
     <avataaar
+        ref="avataaar"
         :avatarStyle="avatar.avatarStyle"
         :accessoriesType="avatar.accessoriesType"
         :clotheType="avatar.clotheType"
@@ -45,6 +46,7 @@
       <v-btn
           text
           color="green"
+          @click="save($refs['avataaar'].avatarURL)"
       >
         Save
       </v-btn>
@@ -148,6 +150,14 @@
             randomElement(name){
                 let index = Math.floor(Math.random() * this.metadata[name].length);
                 return this.metadata[name][index];
+            },
+            save(path) {
+                let vm = this;
+                this.axios.patch('user/change-thumbnail', {
+                    path: path
+                }).then(function(response) {
+                    vm.$alert.success(vm.$t('profile.avatar.saved'))
+                })
             }
         },
         mounted() {

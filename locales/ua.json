@@ -32,6 +32,9 @@
     "percentage": "Відсотки"
   },
   "profile": {
-    "logout": "Вийти"
+    "logout": "Вийти",
+    "avatar": {
+      "saved": "Аватар змінено!"
+    }
   }
 }

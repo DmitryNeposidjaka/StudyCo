@@ -32,6 +32,9 @@
     "percentage": "Percentage"
   },
   "profile": {
-    "logout": "Logout"
+    "logout": "Logout",
+    "avatar": {
+      "saved": "Avatar saved!"
+    }
   }
 }
