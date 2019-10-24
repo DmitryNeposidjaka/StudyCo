@@ -1,15 +1,7 @@
 <template>
   <v-row v-if="data">
-    <v-pagination
-        v-on:next="next"
-        v-on:previous="previous"
-        v-on:input="changeDate"
-        :length="7"
-        :total-visible="7"
-        v-model="selectedDay"
 
-    ></v-pagination>
-    <!--<pagination :length="7"/>-->
+    <pagination v-on:dayChanged="changeDate"/>
       <v-expansion-panels popout>
         <p style="padding: 50px 0px; color: grey; font-weight: bold" v-if="!selectDataByDay">НА цей день розкладу нема</p>
         <v-expansion-panel
@@ -32,9 +24,6 @@
     export default {
         name: 'Schedule',
         data: () => ({
-            selectedDay: 1,
-            timeline: [],
-            week: 1,
             loading: false,
             data: []
         }),
@@ -45,25 +34,9 @@
             }
         },
         methods: {
-            createTimeLine() {
-                let timeline = [];
-                for(var i = 1; i <= 7; i++) {
-                    let item = {
-                        day: i,
-                        date: this.$moment().week(this.week + 33).weekday(i)
-                    };
-                    timeline.push(item)
-                }
-                this.timeline = timeline;
-            },
-            changeDate(number) {
-                this.$emit('dayChanged', this.timeline[--number].date)
-            },
-            next() {
-              this.week++
-            },
-            previous() {
-              this.week++
+            changeDate(date) {
+                this.selectedDay = date.day;
+                this.$emit('dayChanged', date)
             },
             getData() {
                 const vm = this;
@@ -80,8 +53,7 @@
                     }
                 }).then(function () {
                     vm.loading = false;
-                    vm.createTimeLine();
-                    vm.changeDate(1);
+                    vm.changeDate({ day: vm.$moment().weekday(), date: vm.$moment()});
                 })
             }
         },

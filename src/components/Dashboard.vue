@@ -3,35 +3,9 @@
     <v-row
            justify="center">
       <v-col md="12">
-        <v-card>
+        <v-card style="padding: 20px 0px">
           <canvas id="myChart" width="100%" height="100"></canvas>
-          <!--<v-sheet
-              class="v-sheet&#45;&#45;offset mx-auto"
-              color="cyan"
-              elevation="12"
-              max-width="calc(100% - 32px)"
-          >
-            <v-sparkline
-                :labels="labels"
-                :value="value"
-                color="white"
-                line-width="2"
-                padding="16"
-            ></v-sparkline>
-          </v-sheet>
 
-          <v-card-text class="pt-0">
-            <div class="title font-weight-light mb-2">User Registrations</div>
-            <div class="subheading font-weight-light grey&#45;&#45;text">Last Campaign Performance</div>
-            <v-divider class="my-2"></v-divider>
-            <v-icon
-                class="mr-2"
-                small
-            >
-              mdi-clock
-            </v-icon>
-            <span class="caption grey&#45;&#45;text font-weight-light">last registration 26 minutes ago</span>
-          </v-card-text>-->
         </v-card>
       </v-col>
     </v-row>
@@ -53,7 +27,7 @@
     import 'chart.js'
 
     export default {
-
+        name: 'Dashboard',
         data() {
             return {
                 date: this.$moment(),
@@ -84,7 +58,7 @@
         components: {Schedule},
         methods: {
             setDate(date) {
-                this.date = date
+                this.date = date.date
             },
             getData() {
                 const vm = this;
@@ -132,7 +106,7 @@
                     data: {
                         labels: ['проект', 'оценки', 'посещение'],
                         datasets: [{
-                        //    label: '# of Votes',
+                        //    label: null,
                             data: [project.average(), marks.average(), visited.average()],
                             backgroundColor: [
                                 'rgba(255, 206, 86, 0.2)',
@@ -148,6 +122,9 @@
                         }]
                     },
                     options: {
+                        legend: {
+                            display: false
+                        },
                         scales: {
                             yAxes: [{
                                 ticks: {
@@ -162,7 +139,7 @@
                                     labelString: this.$t('dashboard.percentage')
                                 }
                             }]
-                        }
+                        },
                     }
                 });
             }
