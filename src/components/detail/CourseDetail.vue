@@ -4,17 +4,22 @@
       class="mx-auto"
       max-width="800"
   >
-<!--    <v-img
-        class="white&#45;&#45;text"
-        height="200px"
-        src="https://picsum.photos/400/300?random"
-    >
-    </v-img>-->
+    <!--    <v-img
+            class="white&#45;&#45;text"
+            height="200px"
+            src="https://picsum.photos/400/300?random"
+        >
+        </v-img>-->
     <v-card-title>
       {{course.displayname}}
     </v-card-title>
 
-    <div class="text-center"><v-btn small @click="$vuetify.goTo('#course-files')"><v-icon>mdi-file-document</v-icon>{{$t('nav.course_to_file')}}</v-btn></div>
+    <div class="text-center">
+      <v-btn small @click="$vuetify.goTo('#course-files')">
+        <v-icon>mdi-file-document</v-icon>
+        {{$t('nav.course_to_file')}}
+      </v-btn>
+    </div>
 
     <v-card-text v-html="course.summary">
       {{course.summary}}
@@ -33,7 +38,7 @@
               <v-list-item
                   v-for="(fileData, i) in file.contentfiles"
                   :key="i"
-                  :href="getFileUrl(fileData.fileurl)"
+                  v-on:click="onClick(fileData.fileurl)"
               >
                 <v-list-item-icon>
                   <v-icon>mdi-file-download-outline</v-icon>
@@ -48,15 +53,6 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-
-<!--    <v-card-actions>
-      <v-btn
-          text
-          color="orange"
-      >
-        Read
-      </v-btn>
-    </v-card-actions>-->
   </v-card>
 </template>
 
@@ -74,8 +70,20 @@
             }
         },
         methods: {
-            getFileUrl(fileurl) {
-                return fileurl + '?token=' + sessionStorage.getItem('_token')
+            onClick(fileurl) {
+                this.axios({
+                    url: fileurl + '?token=' + sessionStorage.getItem('_token'),
+                    method: 'GET',
+                    responseType: 'blob',
+                }).then((response) => {
+                    var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                    var fileLink = document.createElement('a');
+                    fileLink.href = fileURL;
+                    fileLink.setAttribute('download', decodeURI(fileurl.split('/').pop()));
+                    document.body.appendChild(fileLink);
+
+                    fileLink.click();
+                  });
             }
         }
     }
