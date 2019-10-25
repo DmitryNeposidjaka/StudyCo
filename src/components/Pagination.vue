@@ -46,10 +46,12 @@
             next() {
                 this.week += 1;
                 this.createTimeLine();
+                this.$emit('weekChanged', this.week)
             },
             previous() {
                 this.week -= 1;
                 this.createTimeLine();
+                this.$emit('weekChanged', this.week)
             },
         },
         created() {

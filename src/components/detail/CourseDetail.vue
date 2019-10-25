@@ -33,7 +33,7 @@
               <v-list-item
                   v-for="(fileData, i) in file.contentfiles"
                   :key="i"
-                  :href="fileData.fileurl"
+                  :href="getFileUrl(fileData.fileurl)"
               >
                 <v-list-item-icon>
                   <v-icon>mdi-file-download-outline</v-icon>
@@ -65,13 +65,17 @@
     import goTo from 'vuetify/es5/services/goto'
 
     export default {
-
         computed: {
             ...mapGetters('courses', {
                 getCourseById: 'get'
             }),
             course() {
                 return this.getCourseById(this.$router.currentRoute.params.id)
+            }
+        },
+        methods: {
+            getFileUrl(fileurl) {
+                return fileurl + '?token=' + sessionStorage.getItem('_token')
             }
         }
     }

@@ -1,8 +1,15 @@
 <template>
   <v-row v-if="data">
 
-    <pagination v-on:dayChanged="changeDate"/>
-      <v-expansion-panels popout>
+    <pagination v-on:dayChanged="changeDate" @weekChanged="weekChanged"/>
+    <div class="text-center" style="width: 100%; margin: 40px 0px;" v-if="loading">
+      <v-progress-circular
+          :size="100"
+          color="teal lighten-2"
+          indeterminate
+      ></v-progress-circular>
+    </div>
+      <v-expansion-panels popout v-if="!loading">
         <p style="padding: 50px 0px; color: grey; font-weight: bold" v-if="!selectDataByDay">НА цей день розкладу нема</p>
         <v-expansion-panel
             v-for="(lesson, j) in selectDataByDay"
@@ -24,6 +31,8 @@
     export default {
         name: 'Schedule',
         data: () => ({
+            week: 1,
+            selectedDay: 1,
             loading: false,
             data: []
         }),
@@ -34,6 +43,10 @@
             }
         },
         methods: {
+            weekChanged(week) {
+                this.week = week;
+                this.getData()
+            },
             changeDate(date) {
                 this.selectedDay = date.day;
                 this.$emit('dayChanged', date)
@@ -52,8 +65,11 @@
                         vm.data = response.data;
                     }
                 }).then(function () {
+                    vm.changeDate({
+                        day: vm.$moment().week() == vm.week + 33? vm.$moment().weekday() : 1,
+                        date: vm.$moment()});
                     vm.loading = false;
-                    vm.changeDate({ day: vm.$moment().weekday(), date: vm.$moment()});
+
                 })
             }
         },

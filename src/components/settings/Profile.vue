@@ -95,9 +95,7 @@
             logout() {
                 this.axios.get('/logout')
                     .then(function(response) {
-                        if(response.status == 200) {
-                            this.$router.push({name: 'login'})
-                        }
+                        this.$router.push({name: 'login'})
                     })
             }
         }
